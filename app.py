@@ -1,39 +1,26 @@
 from Blinker import Blinker, BlinkerButton, BlinkerNumber
 from Blinker.BlinkerDebug import *
-
-auth = 'd8c7d2305fa0'  # Secret Key
+from config import getGeneralConfig
 
 BLINKER_DEBUG.debugAll()
 
 Blinker.mode("BLINKER_WIFI")
-Blinker.begin(auth)
+Blinker.begin(getGeneralConfig()['blinker_id'])
 
-button1 = BlinkerButton("btn-abc")
-number1 = BlinkerNumber("num-abc")
+buttonSpeak = BlinkerButton("btn-speak")
 
-counter = 0
-
-
-def button1_callback(state):
-    """ """
-
+def speak_callback(state):
     BLINKER_LOG('get button state: ', state)
-
-    button1.icon('icon_1')
-    button1.color('#FFFFFF')
-    button1.text('Your button name or describe')
-    button1.print(state)
-
+    result = controllers.handText("说话")
+    buttonSpeak.print(state)
+    Blinker.print(result)
 
 def data_callback(data):
-    global counter
-
     BLINKER_LOG("Blinker readString: ", data)
-    counter += 1
-    number1.print(counter)
+    result = controllers.handText(data)
+    Blinker.print(result)
 
-
-button1.attach(button1_callback)
+buttonSpeak.attach(speak_callback)
 Blinker.attachData(data_callback)
 
 if __name__ == '__main__':
