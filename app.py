@@ -1,5 +1,6 @@
 from Blinker import Blinker, BlinkerButton, BlinkerNumber
 from Blinker.BlinkerDebug import *
+import controllers.controller as controllers
 from config import getGeneralConfig
 
 BLINKER_DEBUG.debugAll()
