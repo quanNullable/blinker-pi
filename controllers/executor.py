@@ -12,7 +12,7 @@ def executCommand(command):
         say1("我此次出现该异常的情况是不显示了。") 
         result = '执行成功'
     elif command.Name == ALL_COMANDS[1].Name: 
-        say1("你好啊" if command.Parmas==None else command.Parmas) 
+        say1(command.Parmas) 
         result = '执行成功'
     else:
         result = '暂未完成'

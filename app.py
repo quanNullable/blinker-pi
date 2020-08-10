@@ -3,7 +3,7 @@ from Blinker.BlinkerDebug import *
 import controllers.controller as controllers
 from config import getGeneralConfig
 
-BLINKER_DEBUG.debugAll()
+#BLINKER_DEBUG.debugAll()
 
 Blinker.mode("BLINKER_WIFI")
 Blinker.begin(getGeneralConfig()['blinker_id'])
@@ -12,7 +12,7 @@ buttonSpeak = BlinkerButton("btn-speak")
 
 def speak_callback(state):
     BLINKER_LOG('get button state: ', state)
-    result = controllers.handText("说话")
+    result = controllers.handText("说话:你好啊")
     buttonSpeak.print(state)
     Blinker.print(result)
 
