@@ -18,7 +18,12 @@ def speak_callback(state):
 
 def data_callback(data):
     BLINKER_LOG("Blinker readString: ", data)
-    result = controllers.handText(data)
+    if isinstance(data, str):
+        result = controllers.handText(data)
+    elif isinstance(data, dict):
+        result = str(data)
+    else:
+        result = "无法识别命令"
     Blinker.print(result)
 
 buttonSpeak.attach(speak_callback)
