@@ -18,8 +18,8 @@ def executCommand(command):
     elif command.Name == ALL_COMANDS[2].Name: 
         threading.Thread(
             target=_executeShell,
-            args=(command.Parmas)).start()
-        result = '已开始执行<' + command.Parmas + '>'
+            args=(command.Parmas,)).start()
+        result = '已开始执行'
     else:
         result = '暂未完成'
     Logger.v('命令<' + command.Name + '>执行结果<' + result + '>')
