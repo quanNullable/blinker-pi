@@ -2,6 +2,7 @@ from Blinker import Blinker, BlinkerButton, BlinkerNumber
 from Blinker.BlinkerDebug import *
 import controllers.controller as controllers
 from config import getGeneralConfig
+from tools.baiduVoice import say1
 
 #BLINKER_DEBUG.debugAll()
 
@@ -12,14 +13,14 @@ buttonSpeak = BlinkerButton("btn-speak")
 buttonRestart = BlinkerButton("btn-restart")
 
 def speak_callback(state):
-    BLINKER_LOG('get button state: ', state)
     result = controllers.handText("说话:你好啊")
     buttonSpeak.print(state)
     Blinker.print(result)
 
 def restart_callback(state):
     result = controllers.handText("执行代码:cd /home/pi/Codes/WeChat/PiController && sudo git pull && sudo /home/pi/Codes/AutoRun/startPiController.sh")
-    buttonSpeak.print(state)
+    say1("重启结果:"+result) 
+    buttonRestart.print(state)
     Blinker.print(result)
     
 
