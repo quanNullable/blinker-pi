@@ -19,7 +19,7 @@ def handText(text):
         # print('找到命令:',command)
         Logger.v('执行命令<' + command.Name + '>,参数<' +
                  (str(command.Parmas) or '无') + '>')
-        result = '<' + text + '>' + executCommand(command)
+        result = '<' + text + '>' + str(executCommand(command))
     return result
 
 

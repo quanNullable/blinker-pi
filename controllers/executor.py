@@ -7,6 +7,7 @@ from tools.baiduVoice import say1
 from config import getGeneralConfig
 from logger import Logger
 from tools.notice import sendTextMsg,sendImageMsg
+from mi.helper import test
 
 def executCommand(command):
     if command.Name == ALL_COMANDS[0].Name: 
@@ -21,8 +22,8 @@ def executCommand(command):
             args=(command.Parmas,)).start()
         result = '已开始执行'
     else:
-        result = '暂未完成'
-    Logger.v('命令<' + command.Name + '>执行结果<' + result + '>')
+        result = test()
+    Logger.v('命令<' + command.Name + '>执行结果<' + str(result) + '>')
     return result
 
 

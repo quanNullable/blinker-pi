@@ -3,8 +3,9 @@
 
 import copy,time
 from logger import Logger
+from baseObject import BaseObject
 
-class Command():
+class Command(BaseObject):
       def __init__(self, **info):
           if 'name' in info:#命令名
              self.Name = info['name']
