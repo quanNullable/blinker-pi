@@ -1,4 +1,4 @@
-from Blinker import Blinker, BlinkerButton, BlinkerNumber
+from Blinker import Blinker, BlinkerButton
 from Blinker.BlinkerDebug import *
 import controllers.controller as controllers
 from config import getGeneralConfig
@@ -18,14 +18,14 @@ def speak_callback(state):
     Blinker.print(result)
 
 def restart_callback(state):
+    say1("正在重启树莓派!") 
     result = controllers.handText("执行代码:cd /home/pi/Codes/WeChat/PiController && sudo git pull && sudo /home/pi/Codes/AutoRun/startPiController.sh")
-    say1("重启结果:"+result) 
     buttonRestart.print(state)
     Blinker.print(result)
     
 
 def data_callback(data):
-    BLINKER_LOG("Blinker readString: ", data)
+    print(data)
     if isinstance(data, str):
         result = controllers.handText(data)
     elif isinstance(data, dict):
@@ -37,6 +37,7 @@ def data_callback(data):
 buttonSpeak.attach(speak_callback)
 buttonRestart.attach(restart_callback)
 Blinker.attachData(data_callback)
+say1("Blinker控制器已启动!") 
 
 if __name__ == '__main__':
 
