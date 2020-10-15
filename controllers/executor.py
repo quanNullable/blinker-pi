@@ -22,15 +22,17 @@ def executCommand(command):
             target=_executeShell,
             args=(command.Parmas,)).start()
         result = '已开始执行'
-    elif command.Name == ALL_COMANDS[7].Name:  #设备信息
+    elif command.Name == ALL_COMANDS[3].Name:  #查看日志
+        result = _getSysLog(command.Parmas)
+    elif command.Name == ALL_COMANDS[4].Name:  #设备信息
         result = getSystemInfo()
-    elif command.Name == ALL_COMANDS[8].Name:  #命令帮助
+    elif command.Name == ALL_COMANDS[5].Name:  #命令帮助
         result = _getCommandsHelp()
-    elif command.Name == ALL_COMANDS[9].Name:  #打开米家设备
+    elif command.Name == ALL_COMANDS[6].Name:  #打开米家设备
         result = turnOnDevices(command.Parmas,True)
-    elif command.Name == ALL_COMANDS[10].Name:  #关闭米家设备
+    elif command.Name == ALL_COMANDS[7].Name:  #关闭米家设备
         result = turnOnDevices(command.Parmas,False)
-    elif command.Name == ALL_COMANDS[11].Name:  #切换米家设备状态
+    elif command.Name == ALL_COMANDS[8].Name:  #切换米家设备状态
         result = switchDevices(command.Parmas)
     else:
         result = '暂未完成'
@@ -76,8 +78,8 @@ def _runTaskRightNow(funcName):
         else:
             Logger.e(func + '无法执行','not callable')
 
-#上传至cos后返回访问地址
-def _getSysLogByCos(name=None):
+#获取日志
+def _getSysLog(name=None):
     if name is None:
        name = time.strftime("%Y-%m-%d",time.localtime(time.time()))
     logPath = getGeneralConfig()['log_path']
@@ -85,10 +87,13 @@ def _getSysLogByCos(name=None):
     result = ''
     if os.path.exists(logName):
         try:
-            result = uploadFile(logName)
+            f = open(logName, encoding='utf-8') 
+            result = f.read()
         except Exception as e:
-            Logger.e('上传日志文件' + logName + '失败', e)
+            Logger.e('读取日志文件' + logName + '失败', e)
             result = '读取日志失败'
+        finally:
+            f.close()
     else:
         result = '日志不存在'
     return result
