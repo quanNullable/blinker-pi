@@ -7,7 +7,7 @@ from tools.baiduVoice import say1
 from config import getGeneralConfig
 from logger import Logger
 from tools.notice import sendTextMsg,sendImageMsg
-from mi.helper import test
+from mi.helper import turnOnDevices,switchDevices
 from tools.ip import getIPs
 from tools.system import getSystemInfo
 
@@ -26,8 +26,14 @@ def executCommand(command):
         result = getSystemInfo()
     elif command.Name == ALL_COMANDS[8].Name:  #命令帮助
         result = _getCommandsHelp()
+    elif command.Name == ALL_COMANDS[9].Name:  #打开米家设备
+        result = turnOnDevices(command.Parmas,True)
+    elif command.Name == ALL_COMANDS[10].Name:  #关闭米家设备
+        result = turnOnDevices(command.Parmas,False)
+    elif command.Name == ALL_COMANDS[11].Name:  #切换米家设备状态
+        result = switchDevices(command.Parmas)
     else:
-        result = test()
+        result = '暂未完成'
     Logger.v('命令<' + command.Name + '>执行结果<' + str(result) + '>')
     return result
 

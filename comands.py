@@ -30,8 +30,11 @@ ALL_COMANDS = [
    Command(name='执行任务',func='立即执行指定的定时任务',usage='执行任务:name=xxx',parmas='DIC'),
    Command(name='查看日志',func='查看指定日期日志文件(格式YYYY-MM-DD)',usage='查看日志:X-X-X',parmas='STR/NONE'),
    Command(name='重启系统',func='拉取最新代码并重启控制器',usage='重启系统',parmas=None),
-   Command(name='设备信息',func='获取当前服务器的状态信息',usage='设备信息',parmas=None),
+   Command(name='本机信息',func='获取当前服务器的状态信息',usage='本机信息',parmas=None),
    Command(name='帮助',func='获取命令帮助及用法',usage='帮助',parmas=None),
+   Command(name='打开设备',func='打开指定名称的米家设备',usage='打开设备:XXX',parmas='STR'),
+   Command(name='关闭设备',func='关闭指定名称的米家设备',usage='关闭设备:XXX',parmas='STR'),
+   Command(name='开关设备',func='切换指定名称的米家设备的状态',usage='开关设备:XXX',parmas='STR'),
 ]
 
 def findComandByStr(text):#根据用户输入尝试解析出对应命令
