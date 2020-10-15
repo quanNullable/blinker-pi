@@ -38,7 +38,7 @@ class ChuangMiPlug(Device):
                 result = self.device.off()
                 success = result[0].upper() == 'OK'
             if success:
-                Logger.v('插座' + ('打开' if on else '失败'))
+                Logger.v('插座' + ('打开' if on else '关闭')+'成功')
             else:
-                Logger.e('插座' + ('打开' if on else '失败'), result)
+                Logger.e('插座' + ('打开' if on else '关闭')+'失败', result)
             return success

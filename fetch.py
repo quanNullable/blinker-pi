@@ -13,7 +13,7 @@ def post(url, data=None, json=None,text=False, **kwargs):
     return result
 
 def get(url, params=None,text=False, **kwargs):
-    response = requests.get(url, params, **kwargs)  
+    response = requests.get(url, params, **kwargs) 
     result = response.text if text else response.json()
     # print('get:',url,result)
     return result

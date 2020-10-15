@@ -8,19 +8,24 @@ from config import getGeneralConfig
 from logger import Logger
 from tools.notice import sendTextMsg,sendImageMsg
 from mi.helper import test
+from tools.ip import getIPs
+from tools.system import getSystemInfo
 
 def executCommand(command):
-    if command.Name == ALL_COMANDS[0].Name: 
-        say1("我此次出现该异常的情况是不显示了。") 
-        result = '执行成功'
-    elif command.Name == ALL_COMANDS[1].Name: 
+    if command.Name == ALL_COMANDS[0].Name: #获取ip
+        result = getIPs()
+    elif command.Name == ALL_COMANDS[1].Name: #说话
         say1(command.Parmas) 
         result = '执行成功'
-    elif command.Name == ALL_COMANDS[2].Name: 
+    elif command.Name == ALL_COMANDS[2].Name: #执行代码
         threading.Thread(
             target=_executeShell,
             args=(command.Parmas,)).start()
         result = '已开始执行'
+    elif command.Name == ALL_COMANDS[7].Name:  #设备信息
+        result = getSystemInfo()
+    elif command.Name == ALL_COMANDS[8].Name:  #命令帮助
+        result = _getCommandsHelp()
     else:
         result = test()
     Logger.v('命令<' + command.Name + '>执行结果<' + str(result) + '>')
@@ -82,7 +87,7 @@ def _getSysLogByCos(name=None):
         result = '日志不存在'
     return result
 
-def getCommandsHelp():
+def _getCommandsHelp():
     def formatCommands(commands):
         descs = []
         for comand in commands:
