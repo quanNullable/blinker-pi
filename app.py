@@ -25,7 +25,6 @@ def restart_callback(state):
     
 
 def data_callback(data):
-    print(data)
     if isinstance(data, str):
         result = controllers.handText(data)
     elif isinstance(data, dict):

@@ -32,8 +32,6 @@ ALL_COMANDS = [
    Command(name='打开设备',func='打开指定名称的米家设备',usage='打开设备:XXX',parmas='STR'),
    Command(name='关闭设备',func='关闭指定名称的米家设备',usage='关闭设备:XXX',parmas='STR'),
    Command(name='开关设备',func='切换指定名称的米家设备的状态',usage='开关设备:XXX',parmas='STR'),
-   Command(name='任务详情',func='获取定时任务的详细情况',usage='任务详情',parmas=None),
-   Command(name='执行任务',func='立即执行指定的定时任务',usage='执行任务:name=xxx',parmas='DIC'),
 ]
 
 def findComandByStr(text):#根据用户输入尝试解析出对应命令
